@@ -3,6 +3,7 @@ import cors from 'cors';
 import pino from 'pino';
 import { pinoHttp } from 'pino-http';
 import menuRoutes from './routes/menu';
+import { routes } from './routes';
 
 // Deklarasi Express
 const app: Application = express();
@@ -38,5 +39,6 @@ app.use(
 
 // Dummpy API
 app.use('/api', menuRoutes);
+routes(app);
 
 export default app;
