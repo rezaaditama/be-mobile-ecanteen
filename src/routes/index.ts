@@ -1,5 +1,5 @@
 import { Router, type Application } from 'express';
-import { authRoutes } from '@/modules/auth/auth.route';
+import { authRoutes } from '../modules/auth/auth.route';
 
 const _routes: Array<[string, Router]> = [['/auth', authRoutes]];
 

@@ -1,4 +1,4 @@
-import { env } from '@/config/env';
+import { env } from './config/env';
 import app, { logger } from './app';
 
 // Port berasal dari env
