@@ -11,6 +11,3 @@ if (process.env.NODE_ENV !== 'production') {
     logger.info(`Server running in ${env.NODE_ENV} http://localhost:${PORT}`);
   });
 }
-
-// WAJIB: Export app agar Vercel bisa menjadikannya serverless function
-export default app;
