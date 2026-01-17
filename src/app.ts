@@ -1,6 +1,6 @@
 import express, { type Application } from 'express';
 import cors from 'cors';
-import pino from 'pino';
+import pino, { type LoggerOptions } from 'pino';
 import { pinoHttp } from 'pino-http';
 import menuRoutes from './routes/menu';
 import { routes } from './routes';
@@ -8,18 +8,24 @@ import { routes } from './routes';
 // Deklarasi Express
 const app: Application = express();
 
-// Konfigurasi pino logger
-export const logger = pino({
+// Pino Dinamis
+const pinoOptions: LoggerOptions = {
   level: 'info',
-  transport: {
+};
+
+// Tambahkan transport hanya di development
+if (process.env.NODE_ENV !== 'production') {
+  pinoOptions.transport = {
     target: 'pino-pretty',
     options: {
       colorize: true,
       translateTime: 'SYS:standard',
       ignore: 'pid,hostname',
     },
-  },
-});
+  };
+}
+
+export const logger = pino(pinoOptions);
 
 // Middleware untuk membaca data json
 app.use(express.json());
